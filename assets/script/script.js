@@ -1,11 +1,13 @@
+/** @format */
+
 $(document).ready(function () {
-  $(".js-slider").slick({
+  $('.js-slider').slick({
     dots: false,
     infinite: true,
     speed: 300,
     arrows: false,
-    slidesToShow: 4,
-    slidesToScroll: 4,
+    slidesToShow: 6,
+    slidesToScroll: 6,
     responsive: [
       {
         breakpoint: 1024,
@@ -32,14 +34,12 @@ $(document).ready(function () {
   });
 });
 
-fetch(
-  "https://raw.githubusercontent.com/Cassianosch/programador.cs-reels/develop/slider-produtos-simples/assets/data/data.json"
-)
+fetch('/assets/data/data.json')
   .then((response) => response.json())
   .then((data) => {
     data.forEach((el) => {
-      $(".js-slider").slick(
-        "slickAdd",
+      $('.js-slider').slick(
+        'slickAdd',
         `
         <div class="card">
             <div class="like"></div>
@@ -55,21 +55,21 @@ fetch(
             </div>
             <a class="button">Adicionar ao Carrinho</a>
         </div>
-      `
+      `,
       );
     });
   });
 
 function handleRating(rating) {
-  let htmlToReturn = "";
+  let htmlToReturn = '';
   const maximumRatingStars = 5;
 
   for (let i = 0; i < rating; i++) {
-    htmlToReturn = htmlToReturn + "&#9733;";
+    htmlToReturn = htmlToReturn + '&#9733;';
   }
 
   for (let j = 0; j < maximumRatingStars - rating; j++) {
-    htmlToReturn = htmlToReturn + "&#9734;";
+    htmlToReturn = htmlToReturn + '&#9734;';
   }
 
   return htmlToReturn;
@@ -80,8 +80,8 @@ function handlePrice(price, discount = false) {
     price = price * 0.9;
     // price *= 0.9;
   }
-  return price.toLocaleString("pt-BR", {
-    style: "currency",
-    currency: "BRL",
+  return price.toLocaleString('pt-BR', {
+    style: 'currency',
+    currency: 'BRL',
   });
 }
